@@ -245,12 +245,12 @@ function categorizeCourse(course, yingClass, zhuoClass) {
     if (code.startsWith("HON.E")) return [zhuoLabel, "英语强化课程 (32学分)", null];
     // SRPP2113 希腊神话与西方文化 is 博雅选修, not platform
     if (code === "SRPP2113") return [zhuoLabel, "卓越博雅课程 (14学分)", "博雅选修"];
-    if (code.startsWith("SRPP") || code.startsWith("IOPP")) return [zhuoLabel, platformLabel, null];
+    if (code.startsWith("SRPP") || code.startsWith("IOPP") || code.startsWith("DFPP") || code.startsWith("ITPP")) return [zhuoLabel, platformLabel, null];
     if (name.includes("卓越实践")) return [zhuoLabel, "卓越实践 (2学分)", null];
     if (name.includes("创新创业")) return [zhuoLabel, "创新创业实践 (2学分)", null];
 
     // === 英语学院 ===
-    if (code.startsWith("FFS.") || code.startsWith("ELS.")) return [yingLabel, "第二外语 (12学分)", null];
+    if (code.startsWith("FFS.") || code.startsWith("ELS.") || code.startsWith("SGE.")) return [yingLabel, "第二外语 (12学分)", null];
     if (name.includes("毕业论文") || name.includes("毕业设计")) return [yingLabel, "毕业论文 (5学分)", null];
 
     if (yingClass === "翻译+工管") {

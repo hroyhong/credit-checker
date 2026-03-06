@@ -357,7 +357,7 @@ def categorize_course(course, ying_class, zhuo_class):
     # SRPP2113 希腊神话与西方文化 is 博雅选修, not platform
     if code == "SRPP2113":
         return (zhuo_label, "卓越博雅课程 (14学分)", "博雅选修")
-    if code.startswith("SRPP") or code.startswith("IOPP"):
+    if code.startswith("SRPP") or code.startswith("IOPP") or code.startswith("DFPP") or code.startswith("ITPP"):
         return (zhuo_label, platform_label, None)
 
     if "卓越实践" in name:
@@ -367,7 +367,7 @@ def categorize_course(course, ying_class, zhuo_class):
         return (zhuo_label, "创新创业实践 (2学分)", None)
 
     # === 英语学院 ===
-    if code.startswith("FFS.") or code.startswith("ELS."):
+    if code.startswith("FFS.") or code.startswith("ELS.") or code.startswith("SGE."):
         return (ying_label, "第二外语 (12学分)", None)
 
     if "毕业论文" in name or "毕业设计" in name:
