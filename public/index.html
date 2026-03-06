@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学分检查器 - 上外卓越学院 2022</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>学分检查器</h1>
+            <p class="subtitle">2022级 英语学院 x 卓越学院 联合培养</p>
+        </header>
+
+        <div class="disclaimer">
+            <strong>声明：</strong>由于上外教务系统有时课程代码或分类标签存在错误，自动识别可能不完全准确。本工具<strong>仅供参考</strong>，方便快速查看学分完成情况，请务必以教务系统和培养方案原文为准，谨慎核对。
+        </div>
+
+        <!-- Step 1: Selection -->
+        <div id="select-section" class="card">
+            <div class="step-label">Step 1 &mdash; 选择你的班级</div>
+            <div class="select-grid">
+                <div class="select-group">
+                    <label>卓越学院班级</label>
+                    <div class="radio-cards" id="zhuo-options">
+                        <label class="radio-card"><input type="radio" name="zhuo" value="国别班" checked><span>国别班</span></label>
+                        <label class="radio-card"><input type="radio" name="zhuo" value="国组班"><span>国组班</span></label>
+                        <label class="radio-card"><input type="radio" name="zhuo" value="外交班"><span>外交班</span></label>
+                        <label class="radio-card"><input type="radio" name="zhuo" value="高翻班"><span>高翻班</span></label>
+                    </div>
+                </div>
+                <div class="select-group">
+                    <label>英语学院专业</label>
+                    <div class="radio-cards" id="ying-options">
+                        <label class="radio-card"><input type="radio" name="ying" value="英语"><span>英语</span></label>
+                        <label class="radio-card"><input type="radio" name="ying" value="翻译"><span>翻译</span></label>
+                        <label class="radio-card"><input type="radio" name="ying" value="翻译+工管" checked><span>翻译+工管</span></label>
+                        <label class="radio-card"><input type="radio" name="ying" value="英语+国政"><span>英语+国政</span></label>
+                    </div>
+                </div>
+            </div>
+            <div id="total-preview" class="total-preview"></div>
+        </div>
+
+        <!-- Step 2: Paste transcript -->
+        <div id="input-section" class="card">
+            <div class="step-label">Step 2 &mdash; 粘贴成绩单</div>
+            <div class="hint-box">
+                打开教务系统成绩页面 &rarr; <kbd>Ctrl+A</kbd> 全选 &rarr; <kbd>Ctrl+C</kbd> 复制 &rarr; 粘贴到下面
+                <details class="example-toggle">
+                    <summary>看示例：成绩页面长这样 &darr;</summary>
+                    <img src="/static/example.png" alt="教务系统成绩页面示例" class="example-img">
+                </details>
+            </div>
+            <textarea id="transcript" placeholder="在这里粘贴成绩单...
+
+粘贴进来大概长这样：
+
+学生成绩
+GPA： x.xx
+2024-2025学年-第1学期
+课程名称    学分    绩点    成绩    成绩明细
+课程名称
+HON.XXXX  |  理论课  |  专业核心课程  |  必修
+2    4    xx    平时成绩:xx期末成绩:xx
+..."></textarea>
+            <div class="btn-row">
+                <button id="check-btn" onclick="checkCredits()">检查学分</button>
+                <label class="toggle-label">
+                    <input type="checkbox" id="hide-scores" onchange="toggleScores()">
+                    <span>隐藏成绩</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Step 3: Results -->
+        <div id="results-section" style="display:none;">
+            <div id="summary-bar">
+                <div class="summary-item" id="summary-total"></div>
+                <div class="summary-item" id="summary-status"></div>
+            </div>
+
+            <div id="missing-section" style="display:none;">
+                <h3>还差什么？</h3>
+                <div id="missing-summary"></div>
+            </div>
+
+            <div id="overflow-section" style="display:none;">
+                <h3>超修的学分</h3>
+                <div id="overflow-summary"></div>
+            </div>
+
+            <div id="results"></div>
+
+            <div id="uncategorized-section" style="display:none;">
+                <h3>未分类课程</h3>
+                <p class="note">以下课程无法自动归类到培养方案中，请人工确认是否需要</p>
+                <div id="uncategorized"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+    <script>updateTotalPreview();</script>
+</body>
+</html>
