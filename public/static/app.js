@@ -265,11 +265,11 @@ function categorizeCourse(course, yingClass, zhuoClass) {
             return [yingLabel, proEdLabel, "英院课程自由选择"];
     } else if (yingClass === "英语+国政") {
         if (name.includes("国际谈判")) return [yingLabel, proEdLabel, "国际谈判"];
-        if (code.startsWith("TIBA") || code.startsWith("POLI")) {
-            if (category.includes("专业方向")) return [yingLabel, proEdLabel, "国际政治方向课"];
+        if (code.startsWith("TIBA") || code.startsWith("POLI") || code.startsWith("ENIP")) {
+            if (category.includes("方向")) return [yingLabel, proEdLabel, "国际政治方向课"];
             return [yingLabel, proEdLabel, "国际政治核心课"];
         }
-        if (code.startsWith("ENGL") || code.startsWith("TRIN") || code.startsWith("ENIP") || code.startsWith("HSPP"))
+        if (code.startsWith("ENGL") || code.startsWith("TRIN") || code.startsWith("HSPP"))
             return [yingLabel, proEdLabel, "英院课程自由选择"];
     } else {
         if (code.startsWith("ENGL") || code.startsWith("TRIN") || code.startsWith("ENIP") || code.startsWith("HSPP") || code.startsWith("TIBA"))

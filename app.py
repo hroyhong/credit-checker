@@ -393,14 +393,13 @@ def categorize_course(course, ying_class, zhuo_class):
         if "国际谈判" in name:
             return (ying_label, pro_ed_label, "国际谈判")
 
-        # TODO: need proper code prefixes for 国政 courses
-        if code.startswith("TIBA") or code.startswith("POLI"):
-            if "专业方向" in category:
+        if code.startswith("TIBA") or code.startswith("POLI") or code.startswith("ENIP"):
+            if "方向" in category:
                 return (ying_label, pro_ed_label, "国际政治方向课")
             else:
                 return (ying_label, pro_ed_label, "国际政治核心课")
 
-        if code.startswith(("ENGL", "TRIN", "ENIP", "HSPP")):
+        if code.startswith(("ENGL", "TRIN", "HSPP")):
             return (ying_label, pro_ed_label, "英院课程自由选择")
 
     else:
